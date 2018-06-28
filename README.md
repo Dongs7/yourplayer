@@ -1,9 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-#YourPlayer
+# YourPlayer
 Web-based music application using Youtube API - See Live Demo
 
-##Key Requirements
+## Key Requirements
 React JS
 React-Redux
 Material-UI
@@ -12,9 +12,9 @@ Firestore
 YouTube Data API
 react-youtube
 
-##About
+## About
 
-###This is a simple web-based music application using youtube data api with following functions,
+### This is a simple web-based music application using youtube data api with following functions,
 
 User authentication using google OAuth2 and firebase (no local signup)
 Search song through Youtube Data API
