@@ -1,8 +1,0 @@
-export const PLAYER_PLAY = 'PLAYER_PLAY'
-export const PLAYER_PAUSE = 'PLAYER_PAUSE'
-
-export const PLAYER_SKIP = 'PLAYER_SKIP'
-export const PLAYER_SHUFFLE = 'PLAYER_SHUFFLE'
-export const PLAYER_REPEAT = 'PLAYER_REPEAT'
-
-export const PLAYER_GET_SONGINFO = 'PLAYER_GET_SONGINFO'
