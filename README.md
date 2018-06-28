@@ -21,4 +21,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Search song through Youtube Data API
 - Create / Manage playlists for signed-in users
 - Custom player (shuffle, repeat, skip)
-- Mobile friendly
+- Mobile friendly ( Google login on IOS safari works fine in private window mode )
