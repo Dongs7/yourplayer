@@ -87,8 +87,11 @@ class PlayerController extends Component {
   // Handle player state (play or pause)
   _handlePlayPause = (value) => {
     // console.log("play / pause button pressed")
-    this.props.set_player_status(value)
-    this._handlePlayer()
+    if(this.props.selectedSong.info){
+      this.props.set_player_status(value)
+      this._handlePlayer()
+    }
+
   }
 
   _handlePlayer = () => {
@@ -98,19 +101,23 @@ class PlayerController extends Component {
       this._onPause()
     }
     else{
-      this._onPlay()
+
+        this._onPlay()
+
+
     }
   }
 
   // Handle Skip
   _handleSkip = (type) => {
     // console.log(this.state.isShuffle)
-    if(this.state.isShuffle){
-      this._getTrack("shuffle")
-    }else{
-      this._getTrack(type)
+    if(this.props.selectedSong.info){
+      if(this.state.isShuffle){
+        this._getTrack("shuffle")
+      }else{
+        this._getTrack(type)
+      }
     }
-
   }
 
   // Handle Shuffle
