@@ -107,6 +107,9 @@ const styles = theme => ({
    selected : {
     backgroundColor : '#666'
   },
+  deselected : {
+   backgroundColor : 'transparent'
+ },
 
 })
 
@@ -209,8 +212,10 @@ const DisplayResult = (props) => {
                           key={item.videoId}
                           divider
                           button
-                          className={classNames({[classes.selected] : (playingSong && playingSong.videoId === songInfo.videoId)})}
-                          classes={{ divider: classes.item_divider}}
+                          className={classNames({[classes.selected] : ((playingSong && playingSong.videoId) === songInfo.videoId)})}
+                          classes={{
+                            divider: classes.item_divider,
+                          }}
                         >
                           <ListItemIcon>
                             {playingSong && playingSong.videoId === songInfo.videoId ? <PlayingIcon /> : <AddIcon className={classes.hidden_icon}/>}

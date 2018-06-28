@@ -18,7 +18,8 @@ class PlayerController extends Component {
       isSliderChanged : false,
       repeatCounter : 1,
       isShuffle : false,
-      currentTrackIdx : -1
+      currentTrackIdx : -1,
+      loadingTitle : false,
     }
 
     this.timer = null
@@ -189,7 +190,7 @@ class PlayerController extends Component {
   // 0 - done
   // 5 - queued
   _onStateChange = (e) => {
-    // console.log(e.data)
+
     const { repeatCounter, isShuffle } = this.state
     clearInterval(this.timer)
     // video cued, ready to play
@@ -227,9 +228,14 @@ class PlayerController extends Component {
         this.props.set_player_status('done')
       }
     }
+    else if(e.data === 3 || e.data === -1){
+      this.setState({ loadingTitle : true })
+    }
+
     // playing...
     else if(e.data === 1){
       this.props.set_player_status('play')
+      this.setState({ loadingTitle : false })
     }
   }
 
@@ -247,7 +253,7 @@ class PlayerController extends Component {
   render(){
 
     const { playerStatus, selectedSong } = this.props
-    const { currentPosition, songDuration, isSliderChanged, seekValue, repeatCounter, isShuffle } = this.state
+    const { currentPosition, songDuration, isSliderChanged, seekValue, repeatCounter, isShuffle, loadingTitle } = this.state
     const opts = {
       width:10,
       height:1,
@@ -275,6 +281,8 @@ class PlayerController extends Component {
           sliderState = { isSliderChanged }
           repeatCounter = { repeatCounter }
           shuffleStatus = { isShuffle }
+
+          loadingTitle = { loadingTitle }
           />
         <YouTube
           opts = { opts }

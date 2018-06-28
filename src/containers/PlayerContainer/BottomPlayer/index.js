@@ -68,8 +68,9 @@ const BottomPlayer = (props) => {
           sliderChangeEnd,
           sliderState,
 
-        } = props
+          loadingTitle
 
+        } = props
     return (
       <div className={classes.root}>
         <BottomNavigation className={classes.bnRoot}>
@@ -141,7 +142,8 @@ const BottomPlayer = (props) => {
 
           <div className={classes.flex1}>
             <Typography variant="subheading" className={classes.title_text} noWrap>
-              {playingSong ? convert_title(playingSong.title) : "Please select a song"}
+              {/* {playingSong ? convert_title(playingSong.title) : loadingTest !== '' ? loadingTest : "Please select a song"} */}
+              {loadingTitle ? <FontAwesomeIcon icon={['fal','spinner']}  spin/> : playingSong ? convert_title(playingSong.title) : "Please select a song"}
             </Typography>
           </div>
 
