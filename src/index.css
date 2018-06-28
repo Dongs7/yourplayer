@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Ubuntu|Kalam');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  /* overflow: hidden; */
+}
+
+html {
+  background: #222;
+}
