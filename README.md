@@ -1,7 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-# YourPlayer [See live Demo](https://yourplayer.herokuapp.com)
-- Web-based music application using Youtube API - See Live Demo
+# YourPlayer
+- Web-based music application using Youtube API
+- [See Live Demo](https://yourplayer.herokuapp.com)
 
 ## Key Requirements
 - React JS
