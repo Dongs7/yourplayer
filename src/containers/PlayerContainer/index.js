@@ -101,10 +101,7 @@ class PlayerController extends Component {
       this._onPause()
     }
     else{
-
         this._onPlay()
-
-
     }
   }
 

@@ -17,7 +17,6 @@ import { hot } from 'react-hot-loader'
 // FontAwesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTimesCircle,
-         faCoffee,
          faRepeatAlt as faRepeatAltReg,
          faRepeat1Alt,
          faRandom,
@@ -35,7 +34,6 @@ import { faPlay,
        } from '@fortawesome/pro-light-svg-icons'
 
 library.add(faTimesCircle,
-            faCoffee,
             faRepeatAltReg,
             faRepeat1Alt,
             faPlay,
@@ -89,7 +87,6 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state)
   return{
     userState : state.userState,
     playlists : state.playlists
