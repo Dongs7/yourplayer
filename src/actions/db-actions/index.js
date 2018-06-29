@@ -41,8 +41,6 @@ export const get_user_playlists = (userID) => dispatch => {
         .then((res)=>{
           dispatch(set_user_playlists(res))
         })
-
-
       }
       else {
         // console.log("get_user_playlists :: No playlists for this user")
@@ -60,6 +58,11 @@ export const get_user_playlists = (userID) => dispatch => {
     })
 }
 
+/**
+ * Helper function to detach DB listener from the app when needed
+ *
+ * @param {string} playlistID - Target Playlist ID to be deleted
+ */
 const set_playlists_listener_remover = (remover) => {
   return {
     type : actionTypes.DB_SET_PLAYLISTS_REMOVER,
@@ -113,6 +116,7 @@ export const create_playlist = (userID, playlistName, first = false) => dispatch
   let docRef = db.collection('user').doc(userID).collection('plists').get()
   let docRef_No_check = db.collection('user').doc(userID).collection('plists').doc(plistID)
 
+  // if this is the user's first playlist,
   if(first){
     let create = docRef_No_check.set({
       id: plistID,
@@ -130,10 +134,20 @@ export const create_playlist = (userID, playlistName, first = false) => dispatch
   else{
     docRef
       .then((subDoc)=>{
+
+        // Check if the user has the same playlist ID
         if(some(subDoc.docs,{id:plistID})){
           console.log("DUPLICATE : SAME PLAYLIST NAME")
           dispatch(task_done(1,'play_list','This playlist name already exists'))
         }
+
+        // Check the number of playlists of the user
+        else if(subDoc.size >= 5){
+          console.log("MAX : LIMIT REACHED")
+          dispatch(task_done(1,'play_list','Max. number of playlists reached'))
+        }
+
+        // Create a new playlist
         else{
           docRef_No_check.set({
             id: plistID,
@@ -245,6 +259,11 @@ export const fetch_playlistItems = (userID, playlistID) => dispatch => {
 
 }
 
+/**
+ * Helper function to detach DB listener from the app when needed
+ *
+ * @param {string} playlistID - Target Playlist ID to be deleted
+ */
 const set_playlist_listener_remover = (remover) => {
   return {
     type : actionTypes.DB_SET_PLAYLIST_REMOVER,
@@ -252,7 +271,13 @@ const set_playlist_listener_remover = (remover) => {
   }
 }
 
-
+/**
+ * Fetch items in the target playlist and Enable listener for the playlist.
+ * Also, send a listener remover to the store, so the listener can be detached
+ * when the user moves to the different playlist
+ *
+ * @param {string} playlistID - Target Playlist ID to be deleted
+ */
 const set_current_playlist_id = (playlistID) => {
   return{
     type : actionTypes.DB_SET_CURRENT_PLAYLIST_ID,

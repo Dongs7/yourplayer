@@ -97,7 +97,7 @@ const SideMenu =(props) => {
                 <PlaylistIcon />
               </ListItemIcon>
 
-              <ListItemText inset primary="PLAYLISTS" />
+              <ListItemText inset primary="PLAYLISTS" secondary={`${playlists ? playlists.playlists.total : 0 } / 5`}/>
               {expandListMenu ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
           }
@@ -146,6 +146,8 @@ const SideMenu =(props) => {
                   variant="raised"
                   color="primary"
                   onClick={ ()=>openModal('create') }
+                  // diable create button when total number reaches at 5
+                  disabled = { playlists ? playlists.playlists.total === 5 ? true : false : false }
                 >
                   new playlist
                 </Button>
